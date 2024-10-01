@@ -15,6 +15,8 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.SnackbarHost
 import androidx.compose.material.SnackbarHostState
@@ -138,11 +140,14 @@ fun ShoppingCartApp() {
     // Fiyat filtresi state'i
     var maxPrice by remember { mutableStateOf(10f) }
 
+    val scrollState = rememberScrollState()
+
     Scaffold(
         snackbarHost = { SnackbarHost(hostState = snackbarHostState) },
         content = { paddingValues ->
             Column(
                 modifier = Modifier
+                    .verticalScroll(scrollState)
                     .padding(paddingValues)
                     .fillMaxSize()
             ) {
